@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Scoreboard</string>
+    <string name="add_score_btn_txt">+</string>
+    <string name="subtract_score_btn_txt">-</string>
 </resources>

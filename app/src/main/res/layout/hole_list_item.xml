@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFC107">
+
+    <TextView
+        android:id="@+id/holeNameTextView"
+        style="@style/ListItemTextStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Hole : 18" />
+
+    <TextView
+        android:id="@+id/scoreTextView"
+        style="@style/ListItemTextStyle"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/add_score_button"
+        app:layout_constraintStart_toEndOf="@+id/holeNameTextView"
+        tools:text="Score : 100" />
+
+    <Button
+        android:id="@+id/add_score_button"
+        style="@style/ListItemButtonStyle"
+        android:text="@string/add_score_btn_txt"
+        app:layout_constraintEnd_toStartOf="@+id/subtract_score_btn" />
+
+    <Button
+        android:id="@+id/subtract_score_btn"
+        style="@style/ListItemButtonStyle"
+        android:text="@string/subtract_score_btn_txt"
+        app:layout_constraintEnd_toEndOf="parent" />
+</android.support.constraint.ConstraintLayout>
