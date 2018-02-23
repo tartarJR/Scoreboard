@@ -28,7 +28,7 @@ public class HoleProvider {
         for (int i = 1; i < 19; i++) {
             hole = new Hole();
 
-            hole.setHole("Hole " + i);
+            hole.setHoleName("Hole " + i);
             hole.setScore(0);
 
             holeList.add(hole);

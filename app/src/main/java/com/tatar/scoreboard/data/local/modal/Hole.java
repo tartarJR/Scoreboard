@@ -6,7 +6,7 @@ package com.tatar.scoreboard.data.local.modal;
 
 public class Hole {
 
-    private String hole;
+    private String holeName;
     private int score;
 
     public int getScore() {
@@ -17,11 +17,11 @@ public class Hole {
         this.score = score;
     }
 
-    public String getHole() {
-        return hole;
+    public String getHoleName() {
+        return holeName;
     }
 
-    public void setHole(String hole) {
-        this.hole = hole;
+    public void setHoleName(String holeName) {
+        this.holeName = holeName;
     }
 }
