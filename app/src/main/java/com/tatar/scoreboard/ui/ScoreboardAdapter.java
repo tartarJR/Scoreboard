@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tatar.scoreboard.R;
 import com.tatar.scoreboard.data.local.modal.Hole;
@@ -31,14 +32,34 @@ public class ScoreboardAdapter extends RecyclerView.Adapter<ScoreboardAdapter.Vi
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.hole_list_item, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(view);
-
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.bindHour(holeList.get(position));
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
+        holder.bindHole(holeList.get(position));
+
+        holder.addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int updatedScore = holeList.get(position).getScore() + 1;
+                holeList.get(position).setScore(updatedScore);
+                holder.scoreLabel.setText(updatedScore + "");
+            }
+        });
+
+        holder.subtractButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int updatedScore = holeList.get(position).getScore() - 1;
+                if (updatedScore < 0) {
+                    Toast.makeText(context, "Can not subtract score, it is already 0.", Toast.LENGTH_LONG).show();
+                    updatedScore = 0;
+                }
+                holeList.get(position).setScore(updatedScore);
+                holder.scoreLabel.setText(updatedScore + "");
+            }
+        });
     }
 
     @Override
@@ -46,7 +67,7 @@ public class ScoreboardAdapter extends RecyclerView.Adapter<ScoreboardAdapter.Vi
         return holeList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView holeLabel;
         public TextView scoreLabel;
@@ -60,19 +81,13 @@ public class ScoreboardAdapter extends RecyclerView.Adapter<ScoreboardAdapter.Vi
             scoreLabel = itemView.findViewById(R.id.scoreTextView);
             addButton = itemView.findViewById(R.id.add_score_button);
             subtractButton = itemView.findViewById(R.id.subtract_score_btn);
-
-            itemView.setOnClickListener(this);
         }
 
-        public void bindHour(Hole hole) {
+        public void bindHole(Hole hole) {
             holeLabel.setText(hole.getHoleName());
-            scoreLabel.setText(hole.getScore());
+            scoreLabel.setText(hole.getScore() + "");
         }
 
-        @Override
-        public void onClick(View v) {
-
-        }
     }
 
 }
