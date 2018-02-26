@@ -4,6 +4,8 @@ import com.tatar.scoreboard.di.modules.HoleProviderModule;
 import com.tatar.scoreboard.di.modules.PrefsModule;
 import com.tatar.scoreboard.ui.ScoreboardActivity;
 
+import javax.inject.Singleton;
+
 import dagger.Component;
 
 /**
@@ -11,6 +13,7 @@ import dagger.Component;
  */
 
 @Component(modules = {PrefsModule.class, HoleProviderModule.class})
+@Singleton
 public interface AppComponent {
     void inject(ScoreboardActivity scoreboardActivity);
 }
