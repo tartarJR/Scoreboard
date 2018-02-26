@@ -17,8 +17,8 @@ import dagger.Provides;
 @Module(includes = {ContextModule.class})
 public class PrefsModule {
 
-    @Provides
     @Singleton
+    @Provides
     public PrefsManager prefsManager(@ApplicationContext Context context) {
         return new PrefsManager(context);
     }

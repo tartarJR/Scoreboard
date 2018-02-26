@@ -18,7 +18,7 @@ public class ActivityModule {
 
     private final Context context;
 
-    ActivityModule(Activity context) {
+    public ActivityModule(Activity context) {
         this.context = context;
     }
 

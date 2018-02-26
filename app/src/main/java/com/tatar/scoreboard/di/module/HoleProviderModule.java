@@ -16,6 +16,7 @@ import dagger.Provides;
 public class HoleProviderModule {
 
     @Singleton
+    @Provides
     public HoleProvider holeProvider(PrefsManager prefsManager) {
         return new HoleProvider(prefsManager);
     }

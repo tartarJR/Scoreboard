@@ -2,7 +2,6 @@ package com.tatar.scoreboard.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.tatar.scoreboard.App;
@@ -10,6 +9,9 @@ import com.tatar.scoreboard.R;
 import com.tatar.scoreboard.data.local.modal.Hole;
 import com.tatar.scoreboard.data.local.provider.HoleProvider;
 import com.tatar.scoreboard.data.prefs.PrefsManager;
+import com.tatar.scoreboard.di.component.ActivityComponent;
+import com.tatar.scoreboard.di.component.DaggerActivityComponent;
+import com.tatar.scoreboard.di.module.ActivityModule;
 
 import java.util.List;
 
@@ -17,7 +19,7 @@ import javax.inject.Inject;
 
 public class ScoreboardActivity extends AppCompatActivity {
 
-    private List<Hole> holeList;
+    private ActivityComponent activityComponent;
 
     @Inject
     PrefsManager prefsManager;
@@ -25,6 +27,7 @@ public class ScoreboardActivity extends AppCompatActivity {
     @Inject
     HoleProvider holeProvider;
 
+    private List<Hole> holeList;
     private RecyclerView holeRecyclerView;
     private ScoreboardAdapter adapter;
 
@@ -34,6 +37,8 @@ public class ScoreboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scoreboard);
 
         App.getAppComponent().inject(this);
+
+        activityComponent = DaggerActivityComponent.builder().activityModule(new ActivityModule(this)).build();
 
         holeList = holeProvider.provideHoleList();
 
@@ -50,12 +55,11 @@ public class ScoreboardActivity extends AppCompatActivity {
     private void setUpRecyclerView() {
         holeRecyclerView = findViewById(R.id.holeRecyclerView);
 
-        adapter = new ScoreboardAdapter(ScoreboardActivity.this);
+        adapter = activityComponent.scoreboardAdapter();
         adapter.updateHolesList(holeList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
         holeRecyclerView.setAdapter(adapter);
-        holeRecyclerView.setLayoutManager(layoutManager);
+        holeRecyclerView.setLayoutManager(activityComponent.linearLayoutManager());
         holeRecyclerView.setHasFixedSize(true);
     }
 }
