@@ -39,7 +39,8 @@ public class ScoreboardActivity extends AppCompatActivity {
 
         holeRecyclerView = findViewById(R.id.holeRecyclerView);
 
-        adapter = new ScoreboardAdapter(ScoreboardActivity.this, holeList);
+        adapter = new ScoreboardAdapter(ScoreboardActivity.this);
+        adapter.updateHolesList(holeList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
         holeRecyclerView.setAdapter(adapter);

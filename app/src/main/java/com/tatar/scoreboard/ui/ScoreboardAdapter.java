@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.tatar.scoreboard.R;
 import com.tatar.scoreboard.data.local.modal.Hole;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,11 +22,10 @@ import java.util.List;
 public class ScoreboardAdapter extends RecyclerView.Adapter<ScoreboardAdapter.ViewHolder> {
 
     private Context context;
-    private List<Hole> holeList;
+    private final List<Hole> holeList = new ArrayList<>();
 
-    public ScoreboardAdapter(Context context, List<Hole> holeList) {
+    public ScoreboardAdapter(Context context) {
         this.context = context;
-        this.holeList = holeList;
     }
 
     @Override
@@ -65,6 +65,12 @@ public class ScoreboardAdapter extends RecyclerView.Adapter<ScoreboardAdapter.Vi
     @Override
     public int getItemCount() {
         return holeList.size();
+    }
+
+    public void updateHolesList(List<Hole> holeList) {
+        this.holeList.clear();
+        this.holeList.addAll(holeList);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
