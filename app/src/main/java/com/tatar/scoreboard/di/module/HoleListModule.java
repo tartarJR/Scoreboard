@@ -1,10 +1,10 @@
 package com.tatar.scoreboard.di.module;
 
-import android.app.Activity;
 import android.content.Context;
 
 import com.tatar.scoreboard.di.qualifier.ActivityContext;
 import com.tatar.scoreboard.di.scope.PerActivity;
+import com.tatar.scoreboard.ui.ScoreboardAdapter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,20 +13,13 @@ import dagger.Provides;
  * Created by mobile on 26.02.2018.
  */
 
-@Module
-public class ActivityModule {
+@Module(includes = {ActivityModule.class})
+public class HoleListModule {
 
-    private final Context context;
-
-    ActivityModule(Activity context) {
-        this.context = context;
-    }
-
-    @ActivityContext
-    @PerActivity
     @Provides
-    public Context context() {
-        return context;
+    @PerActivity
+    public ScoreboardAdapter scoreboardAdapter(@ActivityContext Context context) {
+        return new ScoreboardAdapter(context);
     }
 
 }

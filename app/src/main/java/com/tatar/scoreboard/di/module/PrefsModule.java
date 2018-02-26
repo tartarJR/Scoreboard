@@ -3,6 +3,7 @@ package com.tatar.scoreboard.di.module;
 import android.content.Context;
 
 import com.tatar.scoreboard.data.prefs.PrefsManager;
+import com.tatar.scoreboard.di.qualifier.ApplicationContext;
 
 import javax.inject.Singleton;
 
@@ -18,7 +19,7 @@ public class PrefsModule {
 
     @Provides
     @Singleton
-    public PrefsManager prefsManager(Context context) {
+    public PrefsManager prefsManager(@ApplicationContext Context context) {
         return new PrefsManager(context);
     }
 
