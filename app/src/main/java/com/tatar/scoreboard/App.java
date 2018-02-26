@@ -2,9 +2,9 @@ package com.tatar.scoreboard;
 
 import android.app.Application;
 
-import com.tatar.scoreboard.di.AppComponent;
-import com.tatar.scoreboard.di.DaggerAppComponent;
-import com.tatar.scoreboard.di.modules.ContextModule;
+import com.tatar.scoreboard.di.component.AppComponent;
+import com.tatar.scoreboard.di.component.DaggerAppComponent;
+import com.tatar.scoreboard.di.module.ContextModule;
 
 /**
  * Created by mobile on 26.02.2018.

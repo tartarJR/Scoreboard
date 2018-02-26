@@ -1,4 +1,4 @@
-package com.tatar.scoreboard.di.modules;
+package com.tatar.scoreboard.di.module;
 
 import android.content.Context;
 

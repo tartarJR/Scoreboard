@@ -1,7 +1,7 @@
-package com.tatar.scoreboard.di;
+package com.tatar.scoreboard.di.component;
 
-import com.tatar.scoreboard.di.modules.HoleProviderModule;
-import com.tatar.scoreboard.di.modules.PrefsModule;
+import com.tatar.scoreboard.di.module.HoleProviderModule;
+import com.tatar.scoreboard.di.module.PrefsModule;
 import com.tatar.scoreboard.ui.ScoreboardActivity;
 
 import javax.inject.Singleton;

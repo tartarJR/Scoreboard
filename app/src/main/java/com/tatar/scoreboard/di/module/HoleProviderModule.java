@@ -1,4 +1,4 @@
-package com.tatar.scoreboard.di.modules;
+package com.tatar.scoreboard.di.module;
 
 import com.tatar.scoreboard.data.local.provider.HoleProvider;
 import com.tatar.scoreboard.data.prefs.PrefsManager;

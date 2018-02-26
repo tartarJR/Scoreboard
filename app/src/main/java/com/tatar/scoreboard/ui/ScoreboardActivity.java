@@ -37,6 +37,17 @@ public class ScoreboardActivity extends AppCompatActivity {
 
         holeList = holeProvider.provideHoleList();
 
+        setUpRecyclerView();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        prefsManager.setScoreCountsForHoles(holeList);
+    }
+
+    private void setUpRecyclerView() {
         holeRecyclerView = findViewById(R.id.holeRecyclerView);
 
         adapter = new ScoreboardAdapter(ScoreboardActivity.this);
@@ -46,12 +57,5 @@ public class ScoreboardActivity extends AppCompatActivity {
         holeRecyclerView.setAdapter(adapter);
         holeRecyclerView.setLayoutManager(layoutManager);
         holeRecyclerView.setHasFixedSize(true);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        prefsManager.setScoreCountsForHoles(holeList);
     }
 }
