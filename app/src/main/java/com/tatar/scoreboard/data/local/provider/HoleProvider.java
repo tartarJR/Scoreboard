@@ -1,6 +1,7 @@
 package com.tatar.scoreboard.data.local.provider;
 
 import com.tatar.scoreboard.data.local.modal.Hole;
+import com.tatar.scoreboard.data.prefs.SharedPreferencesManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +12,15 @@ import java.util.List;
 
 public class HoleProvider {
 
+    private static final String HOLE_NAME_INDICATOR = "Hole ";
+
     private List<Hole> holeList;
 
-    public HoleProvider() {
+    private SharedPreferencesManager sharedPreferencesManager;
+
+    public HoleProvider(SharedPreferencesManager sharedPreferencesManager) {
+        this.sharedPreferencesManager = sharedPreferencesManager;
+
         holeList = new ArrayList<>();
         addScores();
     }
@@ -28,8 +35,8 @@ public class HoleProvider {
         for (int i = 1; i < 19; i++) {
             hole = new Hole();
 
-            hole.setHoleName("Hole " + i);
-            hole.setScore(0);
+            hole.setHoleName(HOLE_NAME_INDICATOR + i);
+            hole.setScore(sharedPreferencesManager.getScoreCountForHole(hole.getHoleName()));
 
             holeList.add(hole);
         }

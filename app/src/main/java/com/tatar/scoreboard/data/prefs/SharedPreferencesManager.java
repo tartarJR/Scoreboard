@@ -14,7 +14,7 @@ import java.util.List;
 public class SharedPreferencesManager {
 
     private static final String PREF_NAME = "com.tatar.scoreboard.preferences";
-    private static final String PREF_KEY_SCORE_COUNT = "PREF_KEY_SCORE_COUNT";
+    private static final String PREF_KEY_SCORE_COUNT = "PREF_KEY_SCORE_COUNT_";
 
     private final SharedPreferences prefs;
 
@@ -22,17 +22,17 @@ public class SharedPreferencesManager {
         prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
 
-    public void setScoreCountsForHole(List<Hole> holeList) {
+    public void setScoreCountsForHoles(List<Hole> holeList) {
         for (int i = 0; i < holeList.size(); i++) {
-            setScoreCountForHole(holeList.get(i).getScore(), i);
+            setScoreCountForHole(holeList.get(i).getHoleName(), holeList.get(i).getScore());
         }
     }
 
-    private void setScoreCountForHole(int scoreCount, int index) {
-        prefs.edit().putInt(PREF_KEY_SCORE_COUNT + index, scoreCount).apply();
+    private void setScoreCountForHole(String holeName, int scoreCount) {
+        prefs.edit().putInt(PREF_KEY_SCORE_COUNT + holeName, scoreCount).apply();
     }
 
-    public int getScoreCountForHole(int index) {
-        return prefs.getInt(PREF_KEY_SCORE_COUNT + index, 0);
+    public int getScoreCountForHole(String holeName) {
+        return prefs.getInt(PREF_KEY_SCORE_COUNT + holeName, 0);
     }
 }

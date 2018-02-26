@@ -6,10 +6,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.tatar.scoreboard.R;
+import com.tatar.scoreboard.data.local.modal.Hole;
 import com.tatar.scoreboard.data.local.provider.HoleProvider;
+import com.tatar.scoreboard.data.prefs.SharedPreferencesManager;
+
+import java.util.List;
 
 public class ScoreboardActivity extends AppCompatActivity {
 
+    private List<Hole> holeList;
+
+    private SharedPreferencesManager sharedPreferencesManager;
     private HoleProvider holeProvider;
 
     private RecyclerView holeRecyclerView;
@@ -20,15 +27,25 @@ public class ScoreboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scoreboard);
 
+        sharedPreferencesManager = new SharedPreferencesManager(getApplicationContext());
+        holeProvider = new HoleProvider(sharedPreferencesManager);
+
+        holeList = holeProvider.getHoleList();
+
         holeRecyclerView = findViewById(R.id.holeRecyclerView);
 
-        holeProvider = new HoleProvider();
-
-        adapter = new ScoreboardAdapter(ScoreboardActivity.this, holeProvider.getHoleList());
+        adapter = new ScoreboardAdapter(ScoreboardActivity.this, holeList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
         holeRecyclerView.setAdapter(adapter);
         holeRecyclerView.setLayoutManager(layoutManager);
         holeRecyclerView.setHasFixedSize(true);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        sharedPreferencesManager.setScoreCountsForHoles(holeList);
     }
 }
