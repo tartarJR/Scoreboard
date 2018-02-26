@@ -2,6 +2,8 @@ package com.tatar.scoreboard.di.module;
 
 import android.content.Context;
 
+import com.tatar.scoreboard.di.qualifier.ApplicationContext;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -20,8 +22,9 @@ public class ContextModule {
         this.context = context;
     }
 
-    @Provides
+    @ApplicationContext
     @Singleton
+    @Provides
     public Context context() {
         return context.getApplicationContext();
     }
