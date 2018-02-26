@@ -15,6 +15,7 @@ public class SharedPreferencesManager {
 
     private static final String PREF_NAME = "com.tatar.scoreboard.preferences";
     private static final String PREF_KEY_SCORE_COUNT = "PREF_KEY_SCORE_COUNT_";
+    private static final int SCORE_COUNT_DEF_VAL = 0;
 
     private final SharedPreferences prefs;
 
@@ -33,6 +34,6 @@ public class SharedPreferencesManager {
     }
 
     public int getScoreCountForHole(String holeName) {
-        return prefs.getInt(PREF_KEY_SCORE_COUNT + holeName, 0);
+        return prefs.getInt(PREF_KEY_SCORE_COUNT + holeName, SCORE_COUNT_DEF_VAL);
     }
 }

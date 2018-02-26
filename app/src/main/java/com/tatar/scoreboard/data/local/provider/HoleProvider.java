@@ -14,22 +14,15 @@ public class HoleProvider {
 
     private static final String HOLE_NAME_INDICATOR = "Hole ";
 
-    private List<Hole> holeList;
-
     private SharedPreferencesManager sharedPreferencesManager;
 
     public HoleProvider(SharedPreferencesManager sharedPreferencesManager) {
         this.sharedPreferencesManager = sharedPreferencesManager;
-
-        holeList = new ArrayList<>();
-        addScores();
     }
 
-    public List<Hole> getHoleList() {
-        return holeList;
-    }
+    public List<Hole> provideHoleList() {
+        List<Hole> holeList = new ArrayList<>();
 
-    private void addScores() {
         Hole hole;
 
         for (int i = 1; i < 19; i++) {
@@ -40,5 +33,7 @@ public class HoleProvider {
 
             holeList.add(hole);
         }
+
+        return holeList;
     }
 }

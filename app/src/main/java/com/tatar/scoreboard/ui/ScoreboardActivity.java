@@ -30,7 +30,7 @@ public class ScoreboardActivity extends AppCompatActivity {
         sharedPreferencesManager = new SharedPreferencesManager(getApplicationContext());
         holeProvider = new HoleProvider(sharedPreferencesManager);
 
-        holeList = holeProvider.getHoleList();
+        holeList = holeProvider.provideHoleList();
 
         holeRecyclerView = findViewById(R.id.holeRecyclerView);
 
