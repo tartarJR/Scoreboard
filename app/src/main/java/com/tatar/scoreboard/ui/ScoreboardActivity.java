@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import com.tatar.scoreboard.R;
 import com.tatar.scoreboard.data.local.modal.Hole;
 import com.tatar.scoreboard.data.local.provider.HoleProvider;
-import com.tatar.scoreboard.data.prefs.SharedPreferencesManager;
+import com.tatar.scoreboard.data.prefs.PrefsManager;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class ScoreboardActivity extends AppCompatActivity {
 
     private List<Hole> holeList;
 
-    private SharedPreferencesManager sharedPreferencesManager;
+    private PrefsManager prefsManager;
     private HoleProvider holeProvider;
 
     private RecyclerView holeRecyclerView;
@@ -27,8 +27,8 @@ public class ScoreboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scoreboard);
 
-        sharedPreferencesManager = new SharedPreferencesManager(getApplicationContext());
-        holeProvider = new HoleProvider(sharedPreferencesManager);
+        prefsManager = new PrefsManager(getApplicationContext());
+        holeProvider = new HoleProvider(prefsManager);
 
         holeList = holeProvider.provideHoleList();
 
@@ -46,6 +46,6 @@ public class ScoreboardActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        sharedPreferencesManager.setScoreCountsForHoles(holeList);
+        prefsManager.setScoreCountsForHoles(holeList);
     }
 }

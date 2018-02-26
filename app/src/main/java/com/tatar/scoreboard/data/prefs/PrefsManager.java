@@ -11,7 +11,7 @@ import java.util.List;
  * Created by mobile on 23.02.2018.
  */
 
-public class SharedPreferencesManager {
+public class PrefsManager {
 
     private static final String PREF_NAME = "com.tatar.scoreboard.preferences";
     private static final String PREF_KEY_SCORE_COUNT = "PREF_KEY_SCORE_COUNT_";
@@ -19,7 +19,7 @@ public class SharedPreferencesManager {
 
     private final SharedPreferences prefs;
 
-    public SharedPreferencesManager(Context context) {
+    public PrefsManager(Context context) {
         prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
 
