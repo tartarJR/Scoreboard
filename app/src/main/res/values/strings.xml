@@ -2,5 +2,5 @@
     <string name="app_name">Scoreboard</string>
     <string name="add_score_btn_txt">+</string>
     <string name="subtract_score_btn_txt">-</string>
-    <string name="action_clear_scoreboard">clear_scoreboard</string>
+    <string name="action_clear_scoreboard">Clear Scoreboard</string>
 </resources>
