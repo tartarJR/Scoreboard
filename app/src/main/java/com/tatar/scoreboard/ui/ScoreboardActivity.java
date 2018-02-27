@@ -11,8 +11,8 @@ import com.tatar.scoreboard.R;
 import com.tatar.scoreboard.data.local.modal.Hole;
 import com.tatar.scoreboard.data.local.provider.HoleProvider;
 import com.tatar.scoreboard.data.prefs.PrefsManager;
-import com.tatar.scoreboard.di.component.ScoreboardAdapterComponent;
 import com.tatar.scoreboard.di.component.DaggerScoreboardAdapterComponent;
+import com.tatar.scoreboard.di.component.ScoreboardAdapterComponent;
 import com.tatar.scoreboard.di.module.ActivityModule;
 
 import java.util.List;
@@ -81,6 +81,9 @@ public class ScoreboardActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_clear_scoreboard) {
+            prefsManager.clearScoreCounts(holeList);
+            adapter.notifyDataSetChanged();
+
             return true;
         }
 

@@ -36,4 +36,13 @@ public class PrefsManager {
     public int getScoreCountForHole(String holeName) {
         return prefs.getInt(PREF_KEY_SCORE_COUNT + holeName, SCORE_COUNT_DEF_VAL);
     }
+
+    public void clearScoreCounts(List<Hole> holeList) {
+        prefs.edit().clear();
+        prefs.edit().apply();
+
+        for (Hole hole : holeList) {
+            hole.setScore(SCORE_COUNT_DEF_VAL);
+        }
+    }
 }
