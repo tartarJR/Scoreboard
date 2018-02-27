@@ -4,7 +4,6 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.tatar.scoreboard.di.module.HoleListModule;
 import com.tatar.scoreboard.di.scope.PerActivity;
-import com.tatar.scoreboard.ui.ScoreboardActivity;
 import com.tatar.scoreboard.ui.ScoreboardAdapter;
 
 import dagger.Component;
@@ -15,7 +14,7 @@ import dagger.Component;
 
 @Component(modules = {HoleListModule.class})
 @PerActivity
-public interface ActivityComponent {
+public interface ScoreboardAdapterComponent {
     ScoreboardAdapter scoreboardAdapter();
 
     LinearLayoutManager linearLayoutManager();

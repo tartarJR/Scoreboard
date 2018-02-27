@@ -9,8 +9,8 @@ import com.tatar.scoreboard.R;
 import com.tatar.scoreboard.data.local.modal.Hole;
 import com.tatar.scoreboard.data.local.provider.HoleProvider;
 import com.tatar.scoreboard.data.prefs.PrefsManager;
-import com.tatar.scoreboard.di.component.ActivityComponent;
-import com.tatar.scoreboard.di.component.DaggerActivityComponent;
+import com.tatar.scoreboard.di.component.ScoreboardAdapterComponent;
+import com.tatar.scoreboard.di.component.DaggerScoreboardAdapterComponent;
 import com.tatar.scoreboard.di.module.ActivityModule;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import javax.inject.Inject;
 
 public class ScoreboardActivity extends AppCompatActivity {
 
-    private ActivityComponent activityComponent;
+    private ScoreboardAdapterComponent scoreboardAdapterComponent;
 
     @Inject
     PrefsManager prefsManager;
@@ -38,7 +38,7 @@ public class ScoreboardActivity extends AppCompatActivity {
 
         App.getAppComponent().inject(this);
 
-        activityComponent = DaggerActivityComponent.builder().activityModule(new ActivityModule(this)).build();
+        scoreboardAdapterComponent = DaggerScoreboardAdapterComponent.builder().activityModule(new ActivityModule(this)).build();
 
         holeList = holeProvider.provideHoleList();
 
@@ -55,11 +55,11 @@ public class ScoreboardActivity extends AppCompatActivity {
     private void setUpRecyclerView() {
         holeRecyclerView = findViewById(R.id.holeRecyclerView);
 
-        adapter = activityComponent.scoreboardAdapter();
+        adapter = scoreboardAdapterComponent.scoreboardAdapter();
         adapter.updateHolesList(holeList);
 
         holeRecyclerView.setAdapter(adapter);
-        holeRecyclerView.setLayoutManager(activityComponent.linearLayoutManager());
+        holeRecyclerView.setLayoutManager(scoreboardAdapterComponent.linearLayoutManager());
         holeRecyclerView.setHasFixedSize(true);
     }
 }
